@@ -137,7 +137,7 @@ Works naturally with
 
 # Requirements
 
-- Python **3.10+**
+- Python **3.12+**
 - Pure Python
 - No runtime dependencies
 - Cross-platform
@@ -256,7 +256,7 @@ Fractions can be created in several ways depending on your data source.
 ## Using the Constructor
 
 ```python
-from fraction import fraction
+from Fraction import fraction
 
 a = fraction(3, 4)
 b = fraction(5)
