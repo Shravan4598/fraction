@@ -150,7 +150,7 @@ Works naturally with
 ## Install from PyPI
 
 ```bash
-pip install fraction
+pip install Fraction
 ```
 
 ---
