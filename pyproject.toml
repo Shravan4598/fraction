@@ -3,7 +3,7 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fraction"
+name = "fraction-py"
 version = "1.0.0"
 description = "A modern, lightweight, pure-Python Fraction data type with rich arithmetic, comparison, conversion, and interoperability support."
 readme = "README.md"

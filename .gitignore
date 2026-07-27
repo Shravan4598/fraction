@@ -197,3 +197,5 @@ reports/
 .cache-loader/
 tmp/
 temp/
+.pypirc/
+.pypirc
