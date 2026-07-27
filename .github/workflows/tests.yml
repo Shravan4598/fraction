@@ -1,4 +1,3 @@
-```yaml
 name: Continuous Integration
 
 on:
@@ -91,4 +90,3 @@ jobs:
           path: |
             coverage.xml
             htmlcov/
-```
