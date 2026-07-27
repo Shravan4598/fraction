@@ -18,7 +18,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/fraction
+      url: https://pypi.org/project/fraction-py
 
     steps:
       - name: Checkout repository
