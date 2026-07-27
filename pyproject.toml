@@ -1,0 +1,129 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fraction"
+version = "1.0.0"
+description = "A modern, lightweight, pure-Python Fraction data type with rich arithmetic, comparison, conversion, and interoperability support."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Shravan Kumar Pandey" }
+]
+
+keywords = [
+    "fraction",
+    "rational",
+    "math",
+    "numbers",
+    "datatype",
+    "python",
+    "fractions",
+    "numeric"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Typing :: Typed"
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "coverage[toml]>=7.5",
+    "ruff>=0.6",
+    "black>=24.0",
+    "mypy>=1.11",
+    "build>=1.2",
+    "twine>=5.1",
+    "pre-commit>=3.8",
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5"
+]
+
+[project.urls]
+Homepage = "https://github.com/Shravan4598/fraction"
+Repository = "https://github.com/Shravan4598/fraction"
+Issues = "https://github.com/Shravan4598/fraction/issues"
+Documentation = "https://shravan4598.github.io/fraction"
+Changelog = "https://github.com/Shravan4598/fraction/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fraction = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I",
+    "UP",
+    "B",
+    "SIM",
+    "C4"
+]
+
+ignore = []
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=fraction",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--cov-report=html"
+]
+
+[tool.coverage.run]
+source = ["fraction"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 95

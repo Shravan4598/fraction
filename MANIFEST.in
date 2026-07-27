@@ -1,0 +1,41 @@
+# Documentation
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+include SECURITY.md
+include LICENSE
+
+# Build & Packaging
+include pyproject.toml
+include setup.cfg
+include pytest.ini
+include tox.ini
+include mkdocs.yml
+include requirements-dev.txt
+
+# Package typing support
+recursive-include src *.py
+recursive-include src *.typed
+
+# Documentation
+recursive-include docs *.md
+
+# Examples
+recursive-include examples *.py
+
+# Tests
+recursive-include tests *.py
+
+# GitHub workflows
+recursive-include .github *.yml
+
+# Exclude unnecessary files
+global-exclude __pycache__/*
+global-exclude *.py[cod]
+global-exclude *.so
+global-exclude *.dylib
+global-exclude *.dll
+global-exclude .DS_Store
+global-exclude *.log
+global-exclude *.tmp

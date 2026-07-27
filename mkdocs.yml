@@ -1,0 +1,121 @@
+```yaml
+site_name: Fraction
+site_description: A modern, lightweight, pure-Python Fraction data type.
+site_author: Shravan Kumar Pandey
+site_url: https://shravan4598.github.io/fraction
+
+repo_name: Shravan4598/fraction
+repo_url: https://github.com/Shravan4598/fraction
+edit_uri: edit/main/docs/
+
+copyright: Copyright © 2026 Shravan Kumar Pandey
+
+theme:
+  name: material
+
+  language: en
+
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+  palette:
+
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: indigo
+      accent: light-blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+
+  - admonition
+
+  - attr_list
+
+  - tables
+
+  - toc:
+      permalink: true
+
+  - pymdownx.highlight
+
+  - pymdownx.superfences
+
+  - pymdownx.inlinehilite
+
+  - pymdownx.snippets
+
+  - pymdownx.details
+
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+
+  - search
+
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true
+            show_source: false
+            show_signature_annotations: true
+            members_order: source
+
+nav:
+
+  - Home: index.md
+
+  - Installation: installation.md
+
+  - API Reference: api.md
+
+  - Examples: examples.md
+
+  - Changelog: changelog.md
+
+extra:
+
+  social:
+
+    - icon: fontawesome/brands/github
+      link: https://github.com/Shravan4598
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+watch:
+  - src/fraction
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+```
