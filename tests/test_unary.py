@@ -92,10 +92,12 @@ class TestUnaryComposition:
         assert +(-fraction(2, 3)) == fraction(-2, 3)
 
     def test_double_negative(self):
-        assert -(-fraction(4, 9)) == fraction(4, 9)
+        x = -fraction(4, 9)
+        assert -x == fraction(4, 9)
 
     def test_positive_of_positive(self):
-        assert +(+fraction(4, 9)) == fraction(4, 9)
+        y = +fraction(4, 9)
+        assert +y == fraction(4, 9)
 
 
 class TestUnaryIdentity:

@@ -49,9 +49,7 @@ class TestHashEquality:
 class TestDictionaryBehavior:
 
     def test_lookup_using_equivalent_fraction(self):
-        d = {
-            fraction(1, 2): "half"
-        }
+        d = {fraction(1, 2): "half"}
 
         assert d[fraction(2, 4)] == "half"
 
@@ -128,9 +126,7 @@ class TestPickleBehavior:
         assert hash(restored) == hash(original)
 
     def test_pickle_preserves_type(self):
-        restored = pickle.loads(
-            pickle.dumps(fraction(3, 8))
-        )
+        restored = pickle.loads(pickle.dumps(fraction(3, 8)))
 
         assert isinstance(restored, fraction)
 

@@ -1,4 +1,3 @@
-
 """
 Interoperability Example
 ========================
@@ -11,9 +10,9 @@ Run:
     python examples/interoperability.py
 """
 
+import pickle
 from decimal import Decimal
 from fractions import Fraction
-import pickle
 
 from fraction import fraction
 
@@ -181,4 +180,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

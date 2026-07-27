@@ -108,12 +108,12 @@ class TestPowerIdentity:
     def test_power_then_inverse(self):
         f = fraction(3, 5)
 
-        assert (f ** 2) ** -1 == fraction(25, 9)
+        assert (f**2) ** -1 == fraction(25, 9)
 
     def test_inverse_then_power(self):
         f = fraction(3, 5)
 
-        assert (f ** -1) ** 2 == fraction(25, 9)
+        assert (f**-1) ** 2 == fraction(25, 9)
 
     def test_power_preserves_type(self):
         result = fraction(4, 7) ** 3

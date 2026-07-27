@@ -17,7 +17,6 @@ Coverage:
 
 from decimal import Decimal
 
-import math
 import pytest
 
 from fraction import fraction

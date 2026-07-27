@@ -173,7 +173,7 @@ class TestUnsupportedComparisons:
     )
     def test_lt(self, value):
         with pytest.raises(TypeError):
-            fraction(1, 2) < value
+            _ = fraction(1, 2) < value
 
     @pytest.mark.parametrize(
         "value",
@@ -187,7 +187,7 @@ class TestUnsupportedComparisons:
     )
     def test_le(self, value):
         with pytest.raises(TypeError):
-            fraction(1, 2) <= value
+            _ = fraction(1, 2) <= value
 
     @pytest.mark.parametrize(
         "value",
@@ -201,7 +201,7 @@ class TestUnsupportedComparisons:
     )
     def test_gt(self, value):
         with pytest.raises(TypeError):
-            fraction(1, 2) > value
+            _ = fraction(1, 2) > value
 
     @pytest.mark.parametrize(
         "value",
@@ -215,4 +215,4 @@ class TestUnsupportedComparisons:
     )
     def test_ge(self, value):
         with pytest.raises(TypeError):
-            fraction(1, 2) >= value
+            _ = fraction(1, 2) >= value
