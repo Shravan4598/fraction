@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fraction-py"
-version = "1.0.1"
+version = "1.0.2"
 description = "A modern, lightweight, pure-Python Fraction data type with rich arithmetic, comparison, conversion, and interoperability support."
 readme = "README.md"
 requires-python = ">=3.12"
