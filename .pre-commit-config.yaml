@@ -1,4 +1,3 @@
-```yaml
 repos:
   # ----------------------------------------------------
   # General file quality checks
@@ -65,4 +64,3 @@ repos:
         args:
           - --branch=main
           - --branch=master
-```

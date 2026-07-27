@@ -1,4 +1,3 @@
-```yaml
 site_name: Fraction
 site_description: A modern, lightweight, pure-Python Fraction data type.
 site_author: Shravan Kumar Pandey
@@ -118,4 +117,4 @@ validation:
   omitted_files: warn
   absolute_links: warn
   unrecognized_links: warn
-```
+

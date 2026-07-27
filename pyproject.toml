@@ -8,9 +8,15 @@ version = "1.0.0"
 description = "A modern, lightweight, pure-Python Fraction data type with rich arithmetic, comparison, conversion, and interoperability support."
 readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "MIT" }
+
+license = "MIT"
+license-files = ["LICENSE"]
 
 authors = [
+    { name = "Shravan Kumar Pandey" }
+]
+
+maintainers = [
     { name = "Shravan Kumar Pandey" }
 ]
 
@@ -30,7 +36,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -71,20 +76,23 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["fraction*"]
 
 [tool.setuptools.package-data]
 fraction = ["py.typed"]
 
-# -----------------------------
+# --------------------------------------------------
 # Black
-# -----------------------------
+# --------------------------------------------------
+
 [tool.black]
 line-length = 88
 target-version = ["py312"]
 
-# -----------------------------
+# --------------------------------------------------
 # Ruff
-# -----------------------------
+# --------------------------------------------------
+
 [tool.ruff]
 line-length = 88
 target-version = "py312"
@@ -103,9 +111,10 @@ select = [
 
 ignore = []
 
-# -----------------------------
+# --------------------------------------------------
 # MyPy
-# -----------------------------
+# --------------------------------------------------
+
 [tool.mypy]
 python_version = "3.12"
 strict = true
@@ -117,27 +126,58 @@ no_implicit_optional = true
 pretty = true
 show_error_codes = true
 
-# -----------------------------
+# --------------------------------------------------
 # Pytest
-# -----------------------------
+# --------------------------------------------------
+
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src"]
-python_files = ["test_*.py"]
+minversion = "8.0"
+
+testpaths = [
+    "tests"
+]
+
+pythonpath = [
+    "src"
+]
+
+python_files = [
+    "test_*.py"
+]
+
+python_classes = [
+    "Test*"
+]
+
+python_functions = [
+    "test_*"
+]
 
 addopts = [
     "-ra",
-    "--strict-markers",
     "--strict-config",
+    "--strict-markers",
+    "--tb=short",
+    "--showlocals",
     "--cov=fraction",
     "--cov-report=term-missing",
     "--cov-report=xml",
-    "--cov-report=html"
+    "--cov-report=html",
+    "--cov-fail-under=95"
 ]
 
-# -----------------------------
+xfail_strict = true
+
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning"
+]
+
+# --------------------------------------------------
 # Coverage
-# -----------------------------
+# --------------------------------------------------
+
 [tool.coverage.run]
 source = ["fraction"]
 

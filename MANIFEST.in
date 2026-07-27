@@ -1,4 +1,9 @@
-# Documentation
+# ==========================================================
+# MANIFEST.in
+# Files to include in source distribution (sdist)
+# ==========================================================
+
+# Project documentation
 include README.md
 include CHANGELOG.md
 include CONTRIBUTING.md
@@ -6,15 +11,13 @@ include CODE_OF_CONDUCT.md
 include SECURITY.md
 include LICENSE
 
-# Build & Packaging
+# Packaging configuration
 include pyproject.toml
-include setup.cfg
-include pytest.ini
 include tox.ini
 include mkdocs.yml
 include requirements-dev.txt
 
-# Package typing support
+# Source package
 recursive-include src *.py
 recursive-include src *.typed
 
@@ -28,14 +31,17 @@ recursive-include examples *.py
 recursive-include tests *.py
 
 # GitHub workflows
-recursive-include .github *.yml
+recursive-include .github/workflows *.yml
 
-# Exclude unnecessary files
+# Remove unnecessary files
 global-exclude __pycache__/*
 global-exclude *.py[cod]
 global-exclude *.so
-global-exclude *.dylib
+global-exclude *.pyd
 global-exclude *.dll
+global-exclude *.dylib
 global-exclude .DS_Store
 global-exclude *.log
 global-exclude *.tmp
+global-exclude *.swp
+global-exclude *.bak

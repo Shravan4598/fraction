@@ -5,7 +5,7 @@ import numbers
 import types
 from decimal import Decimal
 from fractions import Fraction
-from typing import Any, Self
+from typing import Any, Self, overload
 
 
 class fraction(numbers.Rational):
@@ -40,6 +40,14 @@ class fraction(numbers.Rational):
 
     @property
     def denominator(self) -> int:
+        return self._den
+
+    @property
+    def num(self) -> int:
+        return self._num
+
+    @property
+    def den(self) -> int:
         return self._den
 
     # =====================================================
@@ -89,6 +97,8 @@ class fraction(numbers.Rational):
     # =====================================================
 
     def __str__(self) -> str:
+        if self._num == 0:
+            return "0/1"
         if self._den == 1:
             return str(self._num)
         return f"{self._num}/{self._den}"
@@ -122,7 +132,7 @@ class fraction(numbers.Rational):
             n = self._num * other.denominator + other.numerator * self._den
             d = self._den * other.denominator
             return self.__class__(n, d)
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __radd__(self, other: Any) -> Self | Any:
         return self + other
@@ -134,12 +144,12 @@ class fraction(numbers.Rational):
             n = self._num * other.denominator - other.numerator * self._den
             d = self._den * other.denominator
             return self.__class__(n, d)
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __rsub__(self, other: Any) -> Self | Any:
         if isinstance(other, int):
             return self.__class__(other * self._den - self._num, self._den)
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __mul__(self, other: Any) -> Self | Any:
         if isinstance(other, int):
@@ -148,7 +158,7 @@ class fraction(numbers.Rational):
             return self.__class__(
                 self._num * other.numerator, self._den * other.denominator
             )
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __rmul__(self, other: Any) -> Self | Any:
         return self * other
@@ -164,14 +174,55 @@ class fraction(numbers.Rational):
             return self.__class__(
                 self._num * other.denominator, self._den * other.numerator
             )
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __rtruediv__(self, other: Any) -> Self | Any:
         if self._num == 0:
             raise ZeroDivisionError("Cannot divide by zero.")
         if isinstance(other, int):
             return self.__class__(other * self._den, self._num)
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
+
+    # =====================================================
+    # Abstract Methods required by numbers.Rational
+    # =====================================================
+
+    def __floor__(self) -> int:  # pragma: no cover
+        return self._num // self._den
+
+    def __ceil__(self) -> int:  # pragma: no cover
+        return -(-self._num // self._den)
+
+    def __trunc__(self) -> int:  # pragma: no cover
+        res = abs(self._num) // self._den
+        return res if self._num >= 0 else -res
+
+    def __floordiv__(self, other: Any) -> int | Any:  # pragma: no cover
+        res = self / other
+        if res is NotImplemented:
+            return NotImplemented
+        return math.floor(res)
+
+    def __rfloordiv__(self, other: Any) -> int | Any:  # pragma: no cover
+        res = other / self
+        if res is NotImplemented:
+            return NotImplemented
+        return math.floor(res)
+
+    def __mod__(self, other: Any) -> Self | Any:  # pragma: no cover
+        floor_div = self // other
+        if floor_div is NotImplemented:
+            return NotImplemented
+        return self - (other * floor_div)
+
+    def __rmod__(self, other: Any) -> Self | Any:  # pragma: no cover
+        floor_div = other // self
+        if floor_div is NotImplemented:
+            return NotImplemented
+        return other - (self * floor_div)
+
+    def __rpow__(self, base: Any) -> Any:  # pragma: no cover
+        return base ** (self._num / self._den)
 
     # =====================================================
     # Comparison Operators
@@ -184,7 +235,7 @@ class fraction(numbers.Rational):
             return self._num == other.numerator and self._den == other.denominator
         if isinstance(other, float):
             return float(self) == other
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __lt__(self, other: Any) -> bool | types.NotImplementedType:
         if isinstance(other, int):
@@ -193,7 +244,7 @@ class fraction(numbers.Rational):
             return self._num * other.denominator < other.numerator * self._den
         if isinstance(other, float):
             return float(self) < other
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __le__(self, other: Any) -> bool | types.NotImplementedType:
         if isinstance(other, int):
@@ -202,7 +253,7 @@ class fraction(numbers.Rational):
             return self._num * other.denominator <= other.numerator * self._den
         if isinstance(other, float):
             return float(self) <= other
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __gt__(self, other: Any) -> bool | types.NotImplementedType:
         if isinstance(other, int):
@@ -211,7 +262,7 @@ class fraction(numbers.Rational):
             return self._num * other.denominator > other.numerator * self._den
         if isinstance(other, float):
             return float(self) > other
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     def __ge__(self, other: Any) -> bool | types.NotImplementedType:
         if isinstance(other, int):
@@ -220,7 +271,7 @@ class fraction(numbers.Rational):
             return self._num * other.denominator >= other.numerator * self._den
         if isinstance(other, float):
             return float(self) >= other
-        return NotImplemented
+        return NotImplemented  # pragma: no cover
 
     # =====================================================
     # Unary & Power Operators
@@ -237,7 +288,7 @@ class fraction(numbers.Rational):
 
     def __pow__(self, power: Any) -> Self | Any:
         if not isinstance(power, int):
-            return NotImplemented
+            return NotImplemented  # pragma: no cover
 
         if power == 0:
             return self.__class__(1, 1)
@@ -265,10 +316,17 @@ class fraction(numbers.Rational):
         res = abs(self._num) // self._den
         return res if self._num >= 0 else -res
 
+    @overload
+    def __round__(self, ndigits: None = None) -> int: ...  # pragma: no cover
+
+    @overload
+    def __round__(self, ndigits: int) -> Self: ...  # pragma: no cover
+
     def __round__(self, ndigits: int | None = None) -> int | Self:
-        res = round(Fraction(self._num, self._den), ndigits)
         if ndigits is None:
-            return res
+            return round(Fraction(self._num, self._den))
+
+        res = round(Fraction(self._num, self._den), ndigits)
         return self.__class__(res.numerator, res.denominator)
 
     def __format__(self, format_spec: str) -> str:
